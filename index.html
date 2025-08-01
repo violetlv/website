@@ -54,7 +54,7 @@
 
     .square-container {
       width: 100%;
-      max-width: 300px;
+      max-width: 270px;
       aspect-ratio: 1 / 1;
       margin: 0.5rem auto 0;
       overflow: hidden;
@@ -93,6 +93,16 @@
     a.button:hover {
       background-color: #ccbbee;
     }
+
+    iframe {
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .widget {
+        flex: 1 1 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -106,12 +116,13 @@
       <h2>About Me</h2>
       <p>
         I'm a product manager at Cisco.
-      </p>
-      <img src="IMG_7120.jpeg" alt="Photo of Violet" class="me-photo" />
-    </div>
+    </p>
+    <img src="IMG_7120.jpeg" alt="Photo of Violet" class="me-photo" />
+  </div>
 
     <div class="widget">
       <h2>Moli</h2>
+      <p id="moli-age">Loading age...</p>
       <div class="square-container">
         <img class="cat-photo" src="IMG_2117.jpeg" alt="Cute cat photo" />
       </div>
@@ -136,6 +147,22 @@
       </a>
     </div>
   </div>
+
+  <script>
+    // Calculate age in years and months
+    const moliBirthday = new Date('2022-01-10');
+    const now = new Date();
+    let years = now.getFullYear() - moliBirthday.getFullYear();
+    let months = now.getMonth() - moliBirthday.getMonth();
+
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    const ageText = `I am ${years} year${years !== 1 ? 's' : ''} and ${months} month${months !== 1 ? 's' : ''} old.`;
+    document.getElementById('moli-age').textContent = ageText;
+  </script>
 </body>
 </html>
 
