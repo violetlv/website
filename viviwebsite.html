@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Violet Yu – Product Manager</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: #d8cee9;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .widget-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .widget {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            flex: 1 1 300px; /* grow, shrink, base width */
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .widget h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        .cat-photo {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            margin: 0.5rem auto 0;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            background-color: black;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        a.button:hover {
+            background-color: #ccbbee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Violet Yu</h1>
+        <p>Product Manager • Cat Mom • Book Lover</p>
+    </header>
+
+    <div class="widget-container">
+        <div class="widget">
+            <h2>About Me</h2>
+            <p>
+                I'm a product manager at Cisco. 
+            </p>
+        </div>
+
+        <div class="widget">
+            <h2>Moli</h2>
+            <img class="cat-photo" src="IMG_2117.jpeg" alt="Cute cat photo" />
+        </div>
+
+        <div class="widget">
+            <h2>Coffee Chat</h2>
+            <p>I'd love to connect! Schedule a chat using the link below:</p>
+            <a class="button" href="https://calendly.com/violety/coffee-chat" target="_blank">Book on Calendly</a>
+        </div>
+    </div>
+</body>
+</html>
