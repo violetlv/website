@@ -191,6 +191,7 @@
 
   
   <div class="widget-container">
+    
     <div class="widget">
       <h2>
         About Me
@@ -209,6 +210,7 @@
       <div class="square-container">
         <img class="cat-photo" src="IMG_2117.jpeg" alt="Cute cat photo" />
       </div>
+      
     </div>
 
     <div class="widget">
@@ -221,7 +223,7 @@
       <iframe src="https://calendly.com/violety/coffee-chat?hide_gdpr_banner=1" width="100%" height="300" style="border: none; border-radius: 8px;" title="Calendly Scheduling Widget"></iframe>
     </div>
 
-    <div style="flex-basis: 100%; height: 1rem;"></div>
+    <div style="flex-basis: 100%; height: 0.01rem;"></div>
 
     <div class="widget" style="display: flex; flex-direction: column; gap: 1rem; padding: 0; background: none; box-shadow: none;">
       <div class="widget" style="flex: 1; padding: 1rem;">
@@ -246,7 +248,7 @@
         </div>
       </div>
 
-      <div class="widget" style="flex: 1; padding: 1rem;">
+      <div class="widget" style="flex: 1; padding: rem;">
         <h2>Lofi Beats</h2>
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0MJZ1V8J6hx0Z9fmKlRJez?utm_source=generator" width="100%" height="152" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
@@ -270,6 +272,37 @@
       <img src="Violet_Yu_Resume_Image.jpg" alt="Violet Yu Resume" style="width: 100%; max-height: 300px; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
       <a class="button" href="Violet_Yu_Resume_Website.pdf" target="_blank">Download PDF</a>
     </div>
+
+
+<!-- Third Row Widgets -->
+<div style="flex-basis: 100%; height: 0.01 rem;"></div> <!-- Spacer for row -->
+<div class="widget" style="max-width: 500px;">
+  <h2>NYU Memories
+    <img src="NYU-Logo.jpg" alt="NYU logo" style="height: 1.2em; vertical-align: middle; margin-left: 0 rem;" />
+  </h2>
+  <div id="carousel" style="text-align: center;">
+   <img 
+  id="carousel-image" 
+  src="" 
+  alt="NYU memory" 
+  style="width: 100%; max-width: 400px; height: 270px; object-fit: cover; border-radius: 8px; display: block; margin: 0 auto;" 
+/>
+    <p id="carousel-caption" style="margin-top: 0.5rem; color: #555;">Move-in day at NYU!</p>
+    <div style="margin-top: 1rem;">
+      <button onclick="prevSlide()" style="padding: 0.4rem 0.8rem; margin-right: 0.5rem;">←</button>
+      <button onclick="nextSlide()" style="padding: 0.4rem 0.8rem;">→</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="widget">
+  <h2>Plant Timer</h2>
+  <p>Watering routine for my home plants</p>
+  <img src="nyu2.jpg" alt="NYU friends" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem;" />
+  <p>Late-night food runs with friends after study sessions.</p>
+</div>
+
   </div>
 
   <script>
@@ -324,6 +357,39 @@
       cliInput.value = '';
     });
   </script>
+  <script>
+const photos = [
+  { src: 'Washington Square park.jpeg', caption: 'Washington Square Park view from Bobst Library' },
+  { src: 'Club fair.jpg', caption: 'Me representing Product Management Club at NYU Club fair' },
+  { src: 'Product management club.jpeg', caption: 'Product Management Club founders' },
+  { src: 'Gallatin Business club.jpeg', caption: 'Gallatin Business Club' },
+  { src: 'Senior events.jpeg', caption: 'Senior Events with friends' },
+  { src: 'graduation.jpeg', caption: 'My graduation!' }
+];
+
+let currentIndex = 0;
+updateCarousel(); // 👈 Add this so the first image loads immediately
+
+
+  function updateCarousel() {
+    const img = document.getElementById('carousel-image');
+    const caption = document.getElementById('carousel-caption');
+    img.src = photos[currentIndex].src;
+    img.alt = photos[currentIndex].caption;
+    caption.textContent = photos[currentIndex].caption;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % photos.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+    updateCarousel();
+  }
+</script>
+
 </body>
 
 </html>
