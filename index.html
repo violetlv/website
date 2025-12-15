@@ -144,7 +144,8 @@
         flex: 1 1 100%;
       }
     }
-    .book-widget-flex {
+
+  .book-widget-flex {
   display: flex;
   align-items: center;
   gap: 3.5rem;
@@ -178,6 +179,61 @@
   color: #666;
   margin: 0.25rem 0;
 
+}
+
+/* pothos overlay setup */
+.living-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 800px;        /* keep widget-sized */
+  height: 339px;           /* fixed height for consistent layout */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 0 auto;
+}
+
+.living-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+/* The pothos that sits ON TOP of the photo */
+.pothos-overlay {
+  position: absolute;
+  top: 12%;                /* tweak to taste */
+  left: 12%;               /* “center-left” feel */
+  width: 90px;            /* pothos size */
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;    /* ensure it gets the click */
+}
+
+.philodendron-overlay {
+  position: absolute;
+  top: 30%;      /* nudge vertically as you like */
+  right: 0%;     /* right-side placement */
+  width: 200px;  /* philodendron size */
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.basil-overlay{
+  position:absolute;
+  top:55%;
+  right:19%;
+  width:110px;
+  height:auto;
+  cursor:pointer;
+  user-select:none;
+  -webkit-user-drag:none;
 }
 
   </style>
@@ -297,11 +353,41 @@
 
 
 <div class="widget">
-  <h2>Plant Timer</h2>
-  <p>Watering routine for my home plants</p>
-  <img src="nyu2.jpg" alt="NYU friends" style="width: 100%; border-radius: 8px; margin-bottom: 0.5rem;" />
-  <p>Late-night food runs with friends after study sessions.</p>
+  <h2>Plant Watering Schedule</h2>
+  <div class="living-wrap">
+    <!-- background photo -->
+    <img src="living_room.jpg" alt="Living room" class="living-photo" />
+
+    <!-- hanging pothos: starts as PNG; clicking toggles GIF/PNG -->
+    <img
+      id="hanging-pothos"
+      class="pothos-overlay"
+      src="hanging_pothos-0.png"                
+      data-gif="hanging_pothos.gif"         
+      data-png="hanging_pothos-0.png"          
+      alt="Hanging pothos"
+    />
+    <img
+      id="philodendron-plant-1"
+      class="philodendron-overlay"
+      src="philodendron-0.png"
+      data-png="philodendron-0.png"
+      data-gif="philodendron.gif"
+      alt="philodendron plant"
+    />
+
+    <img
+  id="basil-plant"
+  class="basil-overlay"
+  src="basil.png"
+  data-png="basil.png"
+  data-gif="basil.gif"
+  alt="Basil"
+/>
+
+  </div>
 </div>
+
 
   </div>
 
@@ -388,9 +474,83 @@ updateCarousel(); // 👈 Add this so the first image loads immediately
     currentIndex = (currentIndex - 1 + photos.length) % photos.length;
     updateCarousel();
   }
+
+</script>
+
+<script>
+  (function () {
+    const pothos = document.getElementById('hanging-pothos');
+    if (!pothos) return;
+
+    let revertTimer = null;
+
+    pothos.addEventListener('click', () => {
+      const png = pothos.getAttribute('data-png');
+      const gif = pothos.getAttribute('data-gif');
+
+      // show/refresh GIF so it starts from frame 1
+      pothos.src = gif + '?t=' + Date.now();
+
+      // clear any existing timer, then schedule revert
+      if (revertTimer) clearTimeout(revertTimer);
+      revertTimer = setTimeout(() => {
+        pothos.src = png;        // back to PNG
+        revertTimer = null;
+      }, 1000);                 // 1 second
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const philodendron = document.getElementById('philodendron-plant-1');
+    if (!philodendron) return;
+
+    let revertTimer = null;
+
+    philodendron.addEventListener('click', () => {
+      const png = philodendron.getAttribute('data-png');
+      const gif = philodendron.getAttribute('data-gif');
+
+      // restart GIF from frame 1
+      philodendron.src = gif + '?t=' + Date.now();
+
+      // auto-revert to PNG after 1s
+      if (revertTimer) clearTimeout(revertTimer);
+      revertTimer = setTimeout(() => {
+        philodendron.src = png;
+        revertTimer = null;
+      }, 1000);
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const basil = document.getElementById('basil-plant');
+    if (!basil) return;
+
+    let revertTimer = null;
+
+    basil.addEventListener('click', () => {
+      const png = basil.getAttribute('data-png');
+      const gif = basil.getAttribute('data-gif');
+
+      // restart GIF from frame 1
+      basil.src = gif + '?t=' + Date.now();
+
+      // auto-revert to PNG after 1s
+      if (revertTimer) clearTimeout(revertTimer);
+      revertTimer = setTimeout(() => {
+        basil.src = png;
+        revertTimer = null;
+      }, 1000);
+    });
+  })();
 </script>
 
 </body>
 
 </html>
+
 
